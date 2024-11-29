@@ -1,7 +1,7 @@
 
 import Stripe from "stripe";
 
-const stripe = new Stripe('KEY');
+const stripe = new Stripe('pk_test_51Kv9OAJHkFGBiS12hWn7RCQA1s8SnNTnfTirggYAvlQmYqYQMXizBIKE4KVliNZor8sz9EmIgkDba948MwKgDORS00zU6OmZFA');
 
 export const postPaymentIntent = async (req, res) => {
 
@@ -12,8 +12,7 @@ export const postPaymentIntent = async (req, res) => {
         });
 
         res.json({
-            paymentIntent: paymentIntent.client_secret,
-            publishableKey: 'pk_test_TYooMQauvdEDq54NiTphI7jx',
+            paymentIntent: paymentIntent.client_secret
         })
     } catch (error) {
         console.error('Error creating payment sheet:', error);
