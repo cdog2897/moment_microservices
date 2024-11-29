@@ -8,7 +8,9 @@ const app = express();
 // Use request-based logger for log correlation
 app.use(pinoHttp);
 
+app.use(express.json())
 
 app.use(routes)
+
 
 export default app;

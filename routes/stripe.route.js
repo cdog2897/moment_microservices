@@ -1,10 +1,9 @@
 
 import express from 'express';
-import { getPaymentIntent } from '../controllers/stripe.controller.js'
+import { postPaymentIntent } from '../controllers/stripe.controller.js'
 
 const router = express.Router();
 
-
-router.get('/getPaymentIntent', getPaymentIntent)
+router.post('/postPaymentIntent', postPaymentIntent)
 
 export default router;
