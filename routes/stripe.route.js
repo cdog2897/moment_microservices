@@ -1,12 +1,10 @@
 
-
-const express = require('express');
+import express from 'express';
+import { getPaymentIntent } from '../controllers/stripe.controller.js'
 
 const router = express.Router();
 
-const stripeController = require('../controllers/stripe.controller');
 
-router.route('/getPaymentIntent')
-    .get(stripeController.getPaymentIntent);
+router.get('/getPaymentIntent', getPaymentIntent)
 
-module.exports = router;
+export default router;
