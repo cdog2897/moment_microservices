@@ -16,7 +16,6 @@ export const postPaymentIntent = async (req, res) => {
             paymentIntent: paymentIntent.client_secret
         })
     } catch (error) {
-        req.log.error("Error creating payment intent: ", error);
         logger.error("Error creating payment intent: ", error)
         res.status(500).json({ error: 'Internal Server Error' });
       }
