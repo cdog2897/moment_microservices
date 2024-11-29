@@ -14,11 +14,11 @@ export const postPaymentIntent = async (req, res) => {
         req.log.info("Received payment intent: ", paymentIntent.client_secret)
 
         res.json({
-            paymentIntent: paymentIntent.client_secret,
-            "publishable_key" : "pk_test_51Kv9OAJHkFGBiS12hWn7RCQA1s8SnNTnfTirggYAvlQmYqYQMXizBIKE4KVliNZor8sz9EmIgkDba948MwKgDORS00zU6OmZFA"
+            "clientSecret": paymentIntent.client_secret,
+            "publishableKey" : "pk_test_51Kv9OAJHkFGBiS12hWn7RCQA1s8SnNTnfTirggYAvlQmYqYQMXizBIKE4KVliNZor8sz9EmIgkDba948MwKgDORS00zU6OmZFA"
         })
     } catch (error) {
         req.log.error("Error creating payment intent: ", error.message)
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: error.message });
       }
 }
