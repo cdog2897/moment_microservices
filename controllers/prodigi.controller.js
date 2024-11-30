@@ -48,6 +48,9 @@ export const submitOrder = async (req, res) => {
     };
 
 
+    req.log.info(payload)
+
+
     try {
         const response = await axios.post(url, payload, {headers});
         req.log.info(`Response received from Prodigi: ${response.data}`)
