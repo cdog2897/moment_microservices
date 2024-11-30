@@ -5,11 +5,16 @@ const stripe = new Stripe('sk_test_51Kv9OAJHkFGBiS125ZmqUZmj8TuAPDm8URrmSULIxCoF
 
 export const postPaymentIntent = async (req, res) => {
 
+    const { amount, currency, shipping } = req.body;
+
+    req.log.info("Request received: ", req.body)
+
+    if (!amount || !currency || !shipping) {
+        return res.status(400).json({ error: 'Invalid request body' });
+    }
+
     try {
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount: 1099,
-            currency: 'usd'
-        })
+        const paymentIntent = await stripe.paymentIntents.create(req.body)
 
         req.log.info("Received payment intent: ", paymentIntent.client_secret)
 
