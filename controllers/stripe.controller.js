@@ -27,3 +27,58 @@ export const postPaymentIntent = async (req, res) => {
         res.status(500).json({ error: error.message });
       }
 }
+
+
+export const receiveStripeWebhook = async (req, res) => {
+
+    let event = req.body;
+
+    switch (event.type) {
+        case 'payment_intent.succeeded':
+        {
+            const paymentIntent = event.data.object;
+            console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
+            handlePaymentIntentSucceeded(paymentIntent);
+            break; 
+        }
+        case 'payment_intent.processing':
+        {
+            const paymentIntent = event.data.object;
+            handlePaymentIntentProcessing(paymentIntent)
+            break;
+        }
+        case 'payment_intent.failed':
+        {
+            const paymentIntent = event.data.object;
+            handlePaymentIntentFailed(paymentIntent)
+            break;
+        }
+        default:
+          console.log(`Unhandled event type ${event.type}.`);
+    }
+
+    res.send()
+
+
+
+
+    function handlePaymentIntentSucceeded(paymentIntent) {
+    
+        req.log.info(paymentIntent)
+
+    }
+
+    function handlePaymentIntentProcessing(paymentIntent) {
+    
+        req.log.info(paymentIntent)
+
+    }
+
+    function handlePaymentIntentFailed(paymentIntent) {
+    
+        req.log.info(paymentIntent)
+
+    }
+
+}
+
