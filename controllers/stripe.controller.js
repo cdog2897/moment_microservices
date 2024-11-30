@@ -47,7 +47,7 @@ export const receiveStripeWebhook = async (req, res) => {
             handlePaymentIntentProcessing(paymentIntent)
             break;
         }
-        case 'payment_intent.failed':
+        case 'payment_intent.payment_failed':
         {
             const paymentIntent = event.data.object;
             handlePaymentIntentFailed(paymentIntent)
